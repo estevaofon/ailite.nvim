@@ -288,10 +288,20 @@ end
 
 -- Send context in single message
 function M.send_context_single(prompt, selected_files, callback)
+	local state = require("ailite.state")
+	local files = require("ailite.files")
+	local ui = require("ailite.ui")
+	local unseen_files = state.get_unseen_files()
 	local context = ""
 
-	if #selected_files > 0 then
-		context = "Context - Project files:\n\n" .. files.get_selected_files_content() .. "\n\n"
+	if #unseen_files > 0 then
+		context = "Context - Project files:\n\n" .. files.get_selected_files_content(unseen_files) .. "\n\n"
+		state.mark_files_as_sent(unseen_files)
+	end
+
+	-- Exibe indicador de processamento
+	if state.is_chat_valid() then
+		ui.show_processing_indicator(state.plugin.chat_buf)
 	end
 
 	-- Build messages with history
@@ -324,10 +334,17 @@ end
 
 -- Send context in streaming mode
 function M.send_context_streaming(prompt, selected_files, callback)
+	local state = require("ailite.state")
+	local unseen_files = state.get_unseen_files()
 	local cfg = config.get()
-	local parts = M.split_context_for_streaming(selected_files, prompt)
+	local parts = nil
 
-	-- If nil, context fits in one message
+	if #unseen_files > 0 then
+		parts = M.split_context_for_streaming(unseen_files, prompt)
+		state.mark_files_as_sent(unseen_files)
+	end
+
+	-- Se não há partes (nenhum arquivo novo ou tudo cabe em uma mensagem), envia normalmente
 	if not parts then
 		return M.send_context_single(prompt, selected_files, callback)
 	end
