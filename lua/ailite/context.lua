@@ -271,7 +271,7 @@ function M.process_streaming_parts(parts, original_prompt, callback)
 			-- Continue with next part after a delay
 			vim.defer_fn(function()
 				M.process_streaming_parts(parts, original_prompt, callback)
-			end, 1000)
+			end, 5000) -- Alterado para 5 segundos
 		else
 			-- Error handling
 			callback("error", {
