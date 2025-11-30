@@ -461,6 +461,10 @@ function M.show_help()
 		[[
 === Ailite Help ===
 
+QUICK START:
+  <leader>cc  - Start chat with Ailite
+  <leader>cf  - Select files for context
+
 CHAT COMMANDS:
   i, o, a     - Start new message
   %s     - Send message (insert mode)
@@ -475,6 +479,14 @@ CODE PREVIEW COMMANDS:
   %s       - Apply code to file
   %s       - Copy code to clipboard
   q, Esc      - Close preview
+
+GLOBAL SHORTCUTS:
+  <leader>cc  - Start chat with Ailite
+  <leader>cf  - Select files for context
+  <leader>cp  - Quick prompt
+  <leader>ct  - Toggle current file
+  <leader>ca  - Apply last code block
+  <leader>cd  - Apply with diff preview
 
 GLOBAL COMMANDS:
   :AiliteChat          - Open/close chat

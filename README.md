@@ -8,6 +8,13 @@ A lightweight, interactive AI coding assistant for Neovim with Claude API integr
 
 https://github.com/user-attachments/assets/5f0c5118-55dd-43b3-b676-d9e35a82ac0f
 
+## ⚡ Quick Start
+
+| Key | Action |
+|-----|--------|
+| `<leader>cc` | Start chat with Ailite |
+| `<leader>cf` | Select files for context |
+
 ## ✨ Features
 
 - **Interactive Terminal-Style Chat**: Type directly in the chat buffer, no popup windows
@@ -68,7 +75,7 @@ require("ailite").setup {
 require("ailite").setup({
   -- API Configuration
   api_key = nil, -- Will check ANTHROPIC_API_KEY or CLAUDE_API_KEY env vars
-  model = "claude-3-5-sonnet-20241022",
+  model = "claude-sonnet-4-20250514",
   max_tokens = 8192,
   temperature = 0.7,
   

@@ -6,7 +6,7 @@ local M = {}
 -- Default configuration
 M.defaults = {
 	api_key = nil,
-	model = "claude-3-5-sonnet-20241022",
+	model = "claude-sonnet-4-20250514",
 	max_tokens = 4096,
 	temperature = 0.7,
 	history_limit = 20,
@@ -46,6 +46,8 @@ M.defaults = {
 
 -- Valid model names
 M.valid_models = {
+	"claude-sonnet-4-20250514",
+	"claude-opus-4-20250514",
 	"claude-3-opus-20240229",
 	"claude-3-sonnet-20240229",
 	"claude-3-haiku-20240307",

@@ -264,11 +264,15 @@ function M.show_info()
 		table.insert(info, "")
 	end
 
-	table.insert(info, "⌨️  Main shortcuts:")
-	table.insert(info, "  • <leader>cc - Toggle chat")
+	table.insert(info, "⌨️  Quick Start:")
+	table.insert(info, "  • <leader>cc - Start chat with Ailite")
+	table.insert(info, "  • <leader>cf - Select files for context")
+	table.insert(info, "")
+	table.insert(info, "⌨️  Other shortcuts:")
 	table.insert(info, "  • <leader>cp - Quick prompt")
-	table.insert(info, "  • <leader>cf - Select files")
 	table.insert(info, "  • <leader>ct - Toggle current file")
+	table.insert(info, "  • <leader>ca - Apply last code block")
+	table.insert(info, "  • <leader>cd - Apply with diff preview")
 
 	utils.notify(table.concat(info, "\n"), vim.log.levels.INFO)
 end
