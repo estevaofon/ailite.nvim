@@ -165,12 +165,13 @@ Welcome to Ailite! 🚀
 This is an interactive chat with %s. Press 'i' to start a new message.
 
 Available commands:
-  • i, o, a  - Start new message
-  • Ctrl+S   - Send message (in insert mode)
-  • Esc      - Cancel input or close chat
-  • t        - Show full help
-  • c        - Clear chat
-  • q        - Close chat
+  • i, o, a    - Start new message
+  • Ctrl+S     - Send message (in insert mode)
+  • Esc        - Cancel input or close chat
+  • t          - Show full help
+  • c          - Clear chat
+  • q          - Close chat
+  • <leader>cf - Select files for context
 
 Start by pressing 'i' to send your first message!]],
 		assistant_name
