@@ -22,6 +22,8 @@ M.plugin = {
 	current_input_lines = {},
 	last_prompt_was_sent = false,
 	unsent_prompt = nil,
+	-- Novo campo: arquivos já enviados
+	sent_files = {},
 }
 
 -- State for streaming context
@@ -51,6 +53,7 @@ function M.reset_plugin()
 		current_input_lines = {},
 		last_prompt_was_sent = false,
 		unsent_prompt = nil,
+		sent_files = {},
 	}
 end
 
@@ -158,6 +161,42 @@ function M.end_input_mode()
 	M.plugin.is_in_input_mode = false
 	M.plugin.input_start_line = nil
 	M.plugin.current_input_lines = {}
+end
+
+-- Gerenciar arquivos enviados
+function M.get_unseen_files()
+	local unseen = {}
+	local utils = require("ailite.utils")
+	local sent_set = {}
+	for _, f in ipairs(M.plugin.sent_files) do
+		sent_set[f] = true
+	end
+	for _, f in ipairs(M.plugin.selected_files) do
+		local norm = utils.normalize_path(f)
+		if not sent_set[norm] then
+			table.insert(unseen, norm)
+		end
+	end
+	return unseen
+end
+
+function M.mark_files_as_sent(files)
+	local utils = require("ailite.utils")
+	local sent_set = {}
+	for _, f in ipairs(M.plugin.sent_files) do
+		sent_set[f] = true
+	end
+	for _, f in ipairs(files) do
+		local norm = utils.normalize_path(f)
+		if not sent_set[norm] then
+			table.insert(M.plugin.sent_files, norm)
+			sent_set[norm] = true
+		end
+	end
+end
+
+function M.clear_sent_files()
+	M.plugin.sent_files = {}
 end
 
 -- Buffer/Window validation helpers

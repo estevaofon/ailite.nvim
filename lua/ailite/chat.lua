@@ -415,17 +415,11 @@ end
 
 -- Clear chat
 function M.clear_chat()
-	if state.is_chat_valid() then
-		vim.api.nvim_buf_set_option(state.plugin.chat_buf, "modifiable", true)
-		vim.api.nvim_buf_set_lines(state.plugin.chat_buf, 0, -1, false, {})
-		vim.api.nvim_buf_set_option(state.plugin.chat_buf, "modifiable", false)
-		state.clear_history()
-		state.set_code_blocks({})
-		state.end_input_mode()
-		state.plugin.last_prompt_was_sent = false
-		state.plugin.unsent_prompt = nil
-		utils.notify("💬 Chat and history cleared")
-	end
+	local state = require("ailite.state")
+	local ui = require("ailite.ui")
+	state.clear_history()
+	state.clear_sent_files() -- Limpa arquivos enviados
+	ui.clear_chat_window()
 end
 
 -- Close chat

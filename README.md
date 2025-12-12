@@ -78,6 +78,10 @@ require("ailite").setup({
   model = "claude-sonnet-4-20250514",
   max_tokens = 8192,
   temperature = 0.7,
+
+  context = {
+    max_tokens_per_message = 8000, -- ajuste o valor conforme necessário
+  },
   
   -- Chat Configuration
   history_limit = 20,
@@ -94,7 +98,9 @@ require("ailite").setup({
   
   -- Interface Configuration
   chat_input_prefix = ">>> ",
-  assistant_prefix = "Claude: ",
+  assistant_name = "AiLite",
+  assistant_prefix = "AiLite: ",
+  }
   user_prefix = "You: ",
   
   -- Keybindings
@@ -106,6 +112,7 @@ require("ailite").setup({
     prev_code_block = "<C-p>",  -- Navigate to previous code block
   },
 })
+
 ```
 
 ### Environment Variables
